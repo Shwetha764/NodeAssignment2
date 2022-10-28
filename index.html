@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>FORM</title>
+    </head>
+    <body>
+        <h1>Assignment 2</h1>
+        <form action="/users" method="POST">
+            <input type="text" name="user">
+            <input type="text" name="id">
+            <button type="Submit">Submit</button>
+        </form>
+        
+        <button class="btn1">Get Json</button>
+        <button class="btn2">Get User</button>
+        <script>
+                const btn1=document.querySelector('.btn1');
+                const btn2=document.querySelector('.btn2');
+                const myId= document.querySelector('input[name="id"]');
+
+                btn2.addEventListener('click', ()=>{
+                    fetch(`/users/${myId.value}`).then(res=>res.json())
+                    .then((data)=> {
+                        console.log(data);
+                        if(data.length!=0){
+                            data.forEach(element => {
+                            console.log(element);
+                        });
+                        }
+                        else{
+                            console.log('not found');
+                        }
+                        
+                    });
+                })
+
+                btn1.addEventListener('click', ()=>{
+                    fetch('/users').then(res=>res.json())
+                    .then((data)=> {
+                        console.log(data);
+                        data.users.forEach(element => {
+                            console.log(element);
+                        });
+                    });
+                })
+        </script>
+    </body>
+</html>
