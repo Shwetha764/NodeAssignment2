@@ -3,11 +3,13 @@ const express= require('express');
 const app= express();
 const bodyparser= require('body-parser');
 const myObj= require('./users')
-const port= process.env.PORT || 5000;
+const port= process.env.PORT || 8080;
 
 app.use(bodyparser.urlencoded({
     extended:true
 }))
+app.use(bodyparser.json());
+
 
 console.log(myObj);
 // console.log(myObj.users.some((ele)=>ele.id==1));
@@ -25,9 +27,15 @@ app.get('/user',(req,res)=>{
 })
 
 app.post('/users',(req,res)=>{
-    console.clear();
-    console.log(req.body);
-    res.send(`Done: User ${req.body.user} Id ${req.body.id}`);
+    res.set('Content-Type', 'text/html');
+    const sentence=`Done: User ${req.body.user} Id ${req.body.id}`;
+    console.log(sentence);
+    res.send(JSON.stringify(sentence));
+    // res.send('hi');
+    // console.clear();
+    // console.log(req.body);
+    // res.send(`Done: User ${req.body.user} Id ${req.body.id}`);
+    // res.send(`Done: User ${myObj.name} Id ${myObj.id}`);
 })
 
 app.listen(port,()=>{
