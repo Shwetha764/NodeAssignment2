@@ -30,12 +30,7 @@ app.post('/users',(req,res)=>{
     res.set('Content-Type', 'text/html');
     const sentence=`Done: User ${req.body.user} Id ${req.body.id}`;
     console.log(sentence);
-    res.send({status:200,message:'post response',data:JSON.stringify(sentence)});
-    // res.send('hi');
-    // console.clear();
-    // console.log(req.body);
-    // res.send(`Done: User ${req.body.user} Id ${req.body.id}`);
-    // res.send(`Done: User ${myObj.name} Id ${myObj.id}`);
+    res.json({status:200,message:'post response',data:sentence});
 })
 
 app.listen(port,()=>{
