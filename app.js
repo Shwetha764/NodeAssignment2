@@ -19,7 +19,7 @@ app.get('/users/:id',(req,res)=>{
     if(myObj.users.some((ele)=>ele.id === parseInt(req.params.id))){
         myJson=myObj.users.filter((ele)=>ele.id === parseInt(req.params.id));
     }
-    res.json(myJson);
+    res.json({status:200,message:'get response',data:myJson});
 })
 
 app.get('/user',(req,res)=>{
@@ -30,7 +30,7 @@ app.post('/users',(req,res)=>{
     res.set('Content-Type', 'text/html');
     const sentence=`Done: User ${req.body.user} Id ${req.body.id}`;
     console.log(sentence);
-    res.send(JSON.stringify(sentence));
+    res.send({status:200,message:'post response',data:JSON.stringify(sentence)});
     // res.send('hi');
     // console.clear();
     // console.log(req.body);
